@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
     private void clicked(SearchActivity.SearchType type) {
         String text = edit.getText().toString();
 
+        // make the text required, if not show the user a toast with a message asking them for input
         if (TextUtils.isEmpty(edit.getText())) {
             Toast.makeText(this, "Search text required.", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(this, SearchActivity.class);
             intent.putExtra("text", text);
-            intent.putExtra("hello", type);
+            intent.putExtra("type", type);
             startActivity(intent);
         }
     }

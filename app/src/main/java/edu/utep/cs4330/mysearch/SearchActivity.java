@@ -41,15 +41,19 @@ public class SearchActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // get intent and intent data
         Intent intent = getIntent();
         String text =  intent.getStringExtra("text");
-        SearchType type = (SearchType) intent.getSerializableExtra("hello");
+        SearchType type = (SearchType) intent.getSerializableExtra("type");
+
         String formattedHtml = String.format("<b>Request</b><br/>Text: %s<br/>Type: %s", text, type.toString());
+
         if (Build.VERSION.SDK_INT >= 24) {
             textView.setText(Html.fromHtml(formattedHtml, Build.VERSION.SDK_INT));
         } else {
             textView.setText(Html.fromHtml(formattedHtml));
         }
+
         registerClickListener(R.id.proceedButton, text, type);
     }
 
@@ -60,6 +64,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    // Initialize another intent and start the activity to search Google based on data parameters
     private void clicked(String text, SearchType type) {
         String uri = String.format("https://www.google.com/search?tbm=%s&q=%s", type.tbm, text);
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));

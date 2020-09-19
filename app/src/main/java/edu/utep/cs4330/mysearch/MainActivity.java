@@ -1,3 +1,8 @@
+// Created by Bryan Ramos
+// CS4330 Mobile Application Development
+// Lab: Intent
+// Copyright 2020 - All Rights Reserved.
+
 package edu.utep.cs4330.mysearch;
 
 import androidx.appcompat.app.AppCompatActivity;
